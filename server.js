@@ -9,7 +9,7 @@ function formatMessage(username, text) {
     return {
         username,
         text,
-        time: moment().tz(timezone).format("hh:mm a") + moment().tz(timezone).format("dd/mm/yyyy")
+        time: moment().tz(timezone).format("hh:mm a")
     };
 }
 
