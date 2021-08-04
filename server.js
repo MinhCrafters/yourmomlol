@@ -3,7 +3,7 @@ const http = require('http');
 const app = express();
 const server = http.createServer(app);
 const express = require('express');
-const socketio = require('socket.io')(server);
+const io = require('socket.io')(server);
 const moment = require('moment');
 
 function formatMessage(username, text) {
