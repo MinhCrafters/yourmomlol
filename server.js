@@ -1,7 +1,9 @@
 const path = require('path');
 const http = require('http');
+const app = express();
+const server = http.createServer(app);
 const express = require('express');
-const socketio = require('socket.io');
+const socketio = require('socket.io')(server);
 const moment = require('moment');
 
 function formatMessage(username, text) {
@@ -49,10 +51,6 @@ function userLeave(id) {
 function getRoomUsers(room) {
     return users.filter(user => user.room === room);
 }
-
-const app = express();
-const server = http.createServer(app);
-const io = socketio(server);
 
 // Set static folder
 app.use(express.static(path.join(__dirname, 'public')));
