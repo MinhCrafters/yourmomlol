@@ -44,7 +44,7 @@ header {
 }
 
 body {
-    font-family: thin;
+    font-family: bold;
     font-size: 16px;
     background: var(--light-color);
     margin: 20px;
@@ -151,6 +151,10 @@ a {
 
 .chat-messages .message .meta p {
     font-family: bold;
+}
+
+.chat-messages .message .text p {
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .chat-form-container form {

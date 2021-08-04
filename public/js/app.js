@@ -61,6 +61,7 @@ function outputMessage(message) {
     p.innerHTML += `<span> ${message.time}</span>`;
     div.appendChild(p);
     const para = document.createElement('p');
+    para.classList.add('text');
     para.innerHTML = message.text;
     div.appendChild(para);
     document.querySelector('.chat-messages').appendChild(div);
