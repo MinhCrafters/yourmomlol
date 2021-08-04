@@ -1,14 +1,13 @@
 const path = require('path');
 const http = require('http');
+const express = require('express');
 const app = express();
 const server = http.createServer(app);
-const express = require('express');
 const io = require('socket.io')(server);
 const moment = require('moment');
 
 function formatMessage(username, text) {
-    const date1 = new Date();
-    const date = date1.toLocaleString();
+    const date = new Date();
     const month = ('0' + date.getMonth()).slice(0, 2);
     const day = ('0' + date.getDate()).slice(-2);
     const year = date.getFullYear();
