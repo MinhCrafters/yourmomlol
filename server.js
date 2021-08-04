@@ -5,11 +5,18 @@ const socketio = require('socket.io');
 const moment = require('moment');
 
 function formatMessage(username, text) {
-    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const date1 = new Date();
+    const date = date1.toLocaleString();
+    const month = ('0' + date.getMonth()).slice(0, 2);
+    const day = ('0' + date.getDate()).slice(-2);
+    const year = date.getFullYear();
+    const hour = ('0' + date.getHours()).slice(-2);
+    const mins = ('0' + date.getMinutes()).slice(-2);
+    const dateString = `${hour}:${mins} - ${day}/${month}/${year}`;
     return {
         username,
         text,
-        time: moment().tz(timezone).format("hh:mm a")
+        time: dateString
     };
 }
 
