@@ -5,6 +5,7 @@ const socketio = require('socket.io');
 const moment = require('moment');
 
 function formatMessage(username, text) {
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     return {
         username,
         text,
