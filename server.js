@@ -5,10 +5,17 @@ const socketio = require('socket.io');
 const moment = require('moment');
 
 function formatMessage(username, text) {
+    const date = new Date();
+    const month = ('0' + date.getMonth()).slice(0, 2);
+    const day = ('0' + date.getDate()).slice(-2);
+    const year = date.getFullYear();
+    const hour = ('0' + date.getHours()).slice(-2);
+    const mins = ('0' + date.getMinutes()).slice(-2);
+    const dateString = `${hour}:${mins} - ${day}/${month}/${year}`;
     return {
         username,
         text,
-        time: moment().format('h:mm a')
+        time: dateString
     };
 }
 
@@ -49,7 +56,7 @@ const io = socketio(server);
 // Set static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-const botName = 'Huan Rosi';
+const botName = 'Chatcord Bot';
 
 // Run when client connects
 io.on('connection', socket => {
@@ -66,7 +73,7 @@ io.on('connection', socket => {
             .to(user.room)
             .emit(
                 'message',
-                formatMessage(botName, `${user.username} has joined the chat`)
+                formatMessage(botName, `${user.username} has joined the room`)
             );
 
         // Send users and room info
@@ -90,7 +97,7 @@ io.on('connection', socket => {
         if (user) {
             io.to(user.room).emit(
                 'message',
-                formatMessage(botName, `${user.username} has left the chat`)
+                formatMessage(botName, `${user.username} has left the room`)
             );
 
             // Send users and room info
