@@ -39,8 +39,12 @@
     src: url(/font/thin.ttf);
 }
 
+header {
+    font-family: bold;
+}
+
 body {
-    font-family: bold, thin;
+    font-family: thin;
     font-size: 16px;
     background: var(--light-color);
     margin: 20px;
@@ -61,6 +65,7 @@ a {
     color: var(--dark-color-a);
     border: 0;
     font-size: 17px;
+    font-family: bold;
 }
 
 
@@ -74,6 +79,7 @@ a {
 }
 
 .chat-header {
+    font-family: bold;
     background: var(--dark-color-a);
     color: #fff;
     border-top-left-radius: 5px;
@@ -94,6 +100,7 @@ a {
     color: #fff;
     padding: 20px 20px 60px;
     overflow-y: scroll;
+    font-family: bold;
 }
 
 .chat-sidebar h2 {
@@ -142,8 +149,13 @@ a {
     background-color: var(--dark-color-a);
 }
 
+.chat-messages .message .meta p {
+    font-family: bold;
+}
+
 .chat-form-container form {
     display: flex;
+    font-family: thin;
 }
 
 .chat-form-container input[type='text'] {

@@ -4,9 +4,9 @@ const express = require('express');
 const app = express();
 const server = http.createServer(app);
 const io = require('socket.io')(server);
-const moment = require('moment');
+const marked = require('marked');
 
-function formatMessage(username, text) {
+function formatMessage(username, text1) {
     const date = new Date();
     const month = ('0' + date.getMonth()).slice(0, 2);
     const day = ('0' + date.getDate()).slice(-2);
@@ -14,6 +14,7 @@ function formatMessage(username, text) {
     const hour = ('0' + date.getHours()).slice(-2);
     const mins = ('0' + date.getMinutes()).slice(-2);
     const dateString = `${hour}:${mins} - ${day}/${month}/${year}`;
+    const text = marked(text1);
     return {
         username,
         text,

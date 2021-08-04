@@ -3,12 +3,14 @@ const chatMessages = document.querySelector('.chat-messages');
 const roomName = document.getElementById('room-name');
 const userList = document.getElementById('users');
 
+const markdown = showdown.Converter();
+
 // Get username and room from URL
 const { username, room } = Qs.parse(location.search, {
     ignoreQueryPrefix: true,
 });
 
-const socket = io('ws://localhost:3000', { transports: ['websocket'] });
+const socket = io();
 
 // Join chatroom
 socket.emit('joinRoom', { username, room });
@@ -59,8 +61,7 @@ function outputMessage(message) {
     p.innerHTML += `<span> ${message.time}</span>`;
     div.appendChild(p);
     const para = document.createElement('p');
-    para.classList.add('text');
-    para.innerText = message.text;
+    para.innerHTML = message.text;
     div.appendChild(para);
     document.querySelector('.chat-messages').appendChild(div);
 }
