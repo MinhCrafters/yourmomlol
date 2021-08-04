@@ -1,6 +1,6 @@
 {
     "name": "chatcord",
-    "version": "0.1",
+    "version": "0.1.1",
     "description": "Realtime chat app with fcking rooms",
     "main": "server.js",
     "scripts": {
