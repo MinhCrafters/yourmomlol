@@ -15,11 +15,11 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #bbdefb;
+    background: var(--dark-color-b);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #2196f3;
+    background: var(--dark-color-a);
 }
 
 * {

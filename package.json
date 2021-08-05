@@ -10,7 +10,6 @@
     "author": "MinhCrafters",
     "license": "MIT",
     "dependencies": {
-        "emoji-datasource": "^7.0.2",
         "emoji-js": "^3.6.0",
         "express": "^4.17.1",
         "marked": "^2.1.3",
