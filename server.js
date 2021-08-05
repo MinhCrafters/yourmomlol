@@ -5,16 +5,20 @@ const app = express();
 const server = http.createServer(app);
 const io = require('socket.io')(server);
 const marked = require('marked');
+const EmojiConvertor = require('emoji-js');
 
 function formatMessage(username, text1) {
     const date = new Date();
+    var emoji = new EmojiConvertor();
     const month = ('0' + date.getMonth()).slice(0, 2);
     const day = ('0' + date.getDate()).slice(-2);
     const year = date.getFullYear();
     const hour = ('0' + date.getHours()).slice(-2);
     const mins = ('0' + date.getMinutes()).slice(-2);
     const dateString = `${hour}:${mins} - ${day}/${month}/${year}`;
-    const text = marked(text1);
+    const text2 = marked(text1);
+    emoji.img_set = 'twitter'
+    const text = emoji.replace_colons(text2)
     return {
         username,
         text,
@@ -72,7 +76,7 @@ io.on('connection', socket => {
             .to(user.room)
             .emit(
                 'message',
-                formatMessage(botName, `${user.username} has joined the room`)
+                formatMessage(botName, `${user.username} has joined the room!`)
             );
 
         // Send users and room info
@@ -96,7 +100,7 @@ io.on('connection', socket => {
         if (user) {
             io.to(user.room).emit(
                 'message',
-                formatMessage(botName, `${user.username} has left the room`)
+                formatMessage(botName, `${user.username} has left the room...`)
             );
 
             // Send users and room info
