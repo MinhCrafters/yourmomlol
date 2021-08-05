@@ -4,57 +4,13 @@ const express = require('express');
 const app = express();
 const server = http.createServer(app);
 const io = require('socket.io')(server);
-const marked = require('marked');
-const EmojiConvertor = require('emoji-js');
-
-function formatMessage(username, text1) {
-    const date = new Date();
-    var emoji = new EmojiConvertor();
-    const month = ('0' + date.getMonth()).slice(0, 2);
-    const day = ('0' + date.getDate()).slice(-2);
-    const year = date.getFullYear();
-    const hour = ('0' + date.getHours()).slice(-2);
-    const mins = ('0' + date.getMinutes()).slice(-2);
-    const dateString = `${hour}:${mins} - ${day}/${month}/${year}`;
-    const text2 = marked(text1);
-    emoji.img_set = 'twitter'
-    const text = emoji.replace_colons(text2)
-    return {
-        username,
-        text,
-        time: dateString
-    };
-}
-
-const users = [];
-
-// Join user to chat
-function userJoin(id, username, room) {
-    const user = { id, username, room };
-
-    users.push(user);
-
-    return user;
-}
-
-// Get current user
-function getCurrentUser(id) {
-    return users.find(user => user.id === id);
-}
-
-// User leaves chat
-function userLeave(id) {
-    const index = users.findIndex(user => user.id === id);
-
-    if (index !== -1) {
-        return users.splice(index, 1)[0];
-    }
-}
-
-// Get room users
-function getRoomUsers(room) {
-    return users.filter(user => user.room === room);
-}
+const formatMessage = require('./utils/messages.js');
+const {
+    userJoin,
+    getCurrentUser,
+    userLeave,
+    getRoomUsers
+} = require('./utils/users.js');
 
 // Set static folder
 app.use(express.static(path.join(__dirname, 'public')));
