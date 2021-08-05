@@ -1,5 +1,5 @@
 const marked = require('marked');
-var emoji = require('node-emoji')
+var emoji = require('node-emoji');
 
 function formatMessage(username, text1) {
     const date = new Date();
